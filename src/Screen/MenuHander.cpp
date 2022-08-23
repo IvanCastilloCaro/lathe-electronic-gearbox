@@ -173,8 +173,6 @@ void MenuHandler::enterAboutMenu()
 
 void MenuHandler::handleOkButton()
 {
-    Serial.print("OK Button Pressed in: ");
-    Serial.println(m_menuPosition);
     switch (m_menuPosition)
     {
     case INFO_SCREEN:
@@ -208,9 +206,6 @@ void MenuHandler::handleInfoScreenButton()
 
 void MenuHandler::handleMainMenuButton()
 {
-    Serial.print("CurrentMenuPosition: ");
-    Serial.println(currentMenuPosition);
-
     switch (currentMenuPosition)
     {
     case 0: // Go back
@@ -310,7 +305,7 @@ void MenuHandler::handleMainMenuEncoder()
     int8_t actualEnc = enc->getCount();
 
     // Saturation Mechanism
-    if (actualEnc % 2 == 0)
+    if ((actualEnc & 1) == 0)  //More efficient than actualEnc % 2 == 0
     {
         actualEnc = actualEnc / 2;
         if (actualEnc < 0)
@@ -337,7 +332,7 @@ void MenuHandler::handlePredefinedThreadEncoder()
     int16_t actualEnc = enc->getCount();
 
     // Saturation Mechanism
-    if (actualEnc % 2 == 0)
+    if ((actualEnc & 1) == 0)  //More efficient than actualEnc % 2 == 0
     {
         actualEnc = actualEnc / 2; // Is better to mess with the encoder in this way
         if (actualEnc < 0)
@@ -371,7 +366,7 @@ void MenuHandler::handleCustomRelationMenuEncoder()
     int actualEnc = enc->getCount();
 
     // Saturation Mechanism
-    if (actualEnc % 2 == 0)
+    if ((actualEnc & 1) == 0)  //More efficient than actualEnc % 2 == 0
     {
         if (actualEnc < 0)
         {
@@ -398,7 +393,7 @@ void MenuHandler::handleConfigMenuEncoder() {
     int8_t actualEnc = enc->getCount();
 
     // Saturation Mechanism
-    if (actualEnc % 2 == 0)
+    if ((actualEnc & 1) == 0)  //More efficient than actualEnc % 2 == 0
     {
         actualEnc = actualEnc / 2;
         if (actualEnc < 0)
@@ -455,7 +450,6 @@ void MenuHandler::update()
     }
 
     if (ScreenEncoderHandler::getInstance()->buttonState()) {
-        Serial.println("Button Pressed");
         handleOkButton();
     }
 

@@ -34,26 +34,4 @@ ScreenEncoderHandler* ScreenEncoderHandler::getInstance() {
     return seh;
 }
 
-int ScreenEncoderHandler::getCount() {
-    return enc->getCount();
-}
 
-void ScreenEncoderHandler::setCount(int value) {
-    enc->setCount(value);
-}
-
-void ScreenEncoderHandler::update() {
-    bounce.update();
-    //Serial.println("Bounce updated");
-}
-
-bool ScreenEncoderHandler::buttonState() {
-    if(bounce.changed()) {
-        Serial.print("Bounce Changed to: ");
-        Serial.println(bounce.read());
-        if (bounce.read() == HIGH) {
-            return true;
-        }
-    }
-    return false;
-}

@@ -13,5 +13,5 @@ class EndstopHandler {
     public:
         EndstopHandler();
 
-        bool getEndstopState();
+        inline bool getEndstopState() { return !digitalRead(X_MIN_PIN); }
 };

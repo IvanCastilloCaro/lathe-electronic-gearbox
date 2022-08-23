@@ -1,6 +1,6 @@
 #include <Motion/HeadEncoderHandler.h>
 
-HeadEncoderHandler::HeadEncoderHandler() : freq(0), direction(false), lastRefreshTime(millis())
+HeadEncoderHandler::HeadEncoderHandler() : k_invert_ticks_rev(1.0/ENCODER_TICKS_PER_REV), freq(0), direction(false), lastRefreshTime(millis())
 {
     pinMode(HEAD_EN1, INPUT_PULLUP);
     pinMode(HEAD_EN2, INPUT_PULLUP);
@@ -10,25 +10,15 @@ HeadEncoderHandler::HeadEncoderHandler() : freq(0), direction(false), lastRefres
 
 void HeadEncoderHandler::update()
 {
-    if (millis() - lastRefreshTime > ENCODER_SAMPLING_RATE)
-    {
-        displayFreq = ((double)freq / ENCODER_TICKS_PER_REV) * (1000 / (millis() - lastRefreshTime));
-        freq = 0;
-        lastRefreshTime = millis();
+    if (millis() - lastRefreshTime < ENCODER_SAMPLING_RATE)
+        return;
 
-        direction = directionCounter >= 0 ? !ENCODER_INVERT_DIR : ENCODER_INVERT_DIR;
-        directionCounter = 0;
-    }
-}
+    displayFreq = ((double)freq * k_invert_ticks_rev) * (1000.0 / (millis() - lastRefreshTime));
+    freq = 0;
+    lastRefreshTime = millis();
 
-double HeadEncoderHandler::getFreq() const
-{
-    return displayFreq;
-}
-
-bool HeadEncoderHandler::getDir() const
-{
-    return direction;
+    direction = directionCounter >= 0 ? !ENCODER_INVERT_DIR : ENCODER_INVERT_DIR;
+    directionCounter = 0;
 }
 
 void IRAM_ATTR HeadEncoderHandler::freqCounter(void *p)

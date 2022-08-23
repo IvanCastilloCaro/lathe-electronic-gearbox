@@ -16,9 +16,9 @@ class HeadEncoderHandler {
 
         void update(); //Must be executed in every cycle
 
-        double getFreq() const; //Gets frequency in Hertz
+        inline double getFreq() const { return displayFreq; } //Gets frequency in Hertz
 
-        bool getDir() const;
+        inline bool getDir() const { return direction; };
     private:
         volatile uint16_t freq;
         double displayFreq;
@@ -26,5 +26,7 @@ class HeadEncoderHandler {
         bool direction;
         long lastRefreshTime;
 
+
+        const double k_invert_ticks_rev;
         static void IRAM_ATTR freqCounter(void *p);
 };

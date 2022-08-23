@@ -22,10 +22,6 @@ void setup() {
 
   enc->setCount(0);
 
-  Serial.begin(115200);
-
-  Serial.println("Test");
-
   menu->enterAboutMenu();
 
   delay(2500);

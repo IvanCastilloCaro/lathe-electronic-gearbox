@@ -26,15 +26,13 @@ class ScreenEncoderHandler {
 
         static ScreenEncoderHandler* getInstance();
 
-        void setCount(int value);
+        inline int getCount() { return enc->getCount(); }
 
-        int getCount();
+        inline void setCount(int value) { enc->setCount(value); }
 
-        bool getButtonAction();
+        inline void update() { bounce.update(); }
 
-        void update();
-
-        bool buttonState();
+        inline bool buttonState() { return bounce.changed() && bounce.read(); }
 
     private:
         Bounce bounce;

@@ -51,10 +51,10 @@ void ScreenHandler::test()
     delay(1000);
 }
 
-void ScreenHandler::drawText(const String &a, const int &x_pos, const int &y_pos, ScreenTextEnum font_type, bool commit)
+void ScreenHandler::drawText(const String &str, const int &x_pos, const int &y_pos, ScreenTextEnum font_type, bool commit)
 {
     char c_str[21];
-    a.getBytes((unsigned char *)c_str, 21);
+    str.getBytes((unsigned char *)c_str, 21);
     m_u8g2->setFont(ScreenTextArray[static_cast<size_t>(font_type)]);
     m_u8g2->drawStr(x_pos, y_pos, c_str);
 

@@ -17,13 +17,13 @@ class StepperHandler {
     public:
         StepperHandler();
 
-        void updateSpeed(float newSpeed);
+        inline void updateSpeed(float newSpeed) { m_stepper.setSpeed(newSpeed * X_STEPS_PER_MM); }
 
-        void run();
+        inline void run() { m_stepper.runSpeed(); }
         
         void stop();
 
-        void setMotorDirection(bool dir);
+        inline void setMotorDirection(bool dir) { m_stepper.setPinsInverted(dir); }
     private:
         AccelStepper m_stepper;
 
