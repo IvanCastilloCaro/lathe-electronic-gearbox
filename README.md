@@ -20,7 +20,7 @@ The project has the following compatibility with microcontrollers:
 | Microcontroller / Board | Status |
 |--|--|
 | ESP32 - WROOM32 | 100% Compatible |
-| Mega2560 - RAMPS 1.4 | In code but not working 100% . Maybe it will be deprecated |
+| Mega2560 - RAMPS 1.4 | Deprecated |
 
 # What do you need
 You will need some components in order to start working with LEG:
