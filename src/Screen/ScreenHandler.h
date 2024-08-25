@@ -47,6 +47,7 @@ public:
     void drawMenuLineSelected(uint8_t row);
     void clearMenuLine(const size_t &row, bool commit = true);
     void drawBitmap(const unsigned char* bitmap, const int &w, const int &h, const int &x, const int &y, bool commit = true);
+    void drawRect(const int& x_pos, const int& y_pos, const int& width, const int& height, bool commit = true);
 
     static const uint8_t* ScreenTextArray[4];
 

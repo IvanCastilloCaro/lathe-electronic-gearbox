@@ -10,7 +10,7 @@ const uint8_t *ScreenHandler::ScreenTextArray[4] = {
 
 const uint8_t ScreenHandler::TextSizes[4] = {5, 6, 7, 16}; // Stands for Small, Normal...
 
-U8G2_ST7920_128X64_F_HW_SPI ext_m_u8g2(U8G2_R0, 5);
+U8G2_ST7920_128X64_F_HW_SPI ext_m_u8g2(U8G2_R0, 17);
 
 ScreenHandler *ScreenHandler::m_instance = nullptr;
 
@@ -119,13 +119,20 @@ void ScreenHandler::clearPartOfScreen(const int &x, const int &y, const int &w, 
 }
 
 void ScreenHandler::clearMenuLine(const size_t &row, bool commit) {
-    clearPartOfScreen(0, rows[row]-10, 128, 12, commit);
+    clearPartOfScreen(0, rows[row]-10, 128, 13, commit);
 }
 
 void ScreenHandler::drawBitmap(const unsigned char* bitmap, const int &w, const int &h, const int& x, const int& y, bool commit) {
 
     m_u8g2->setBitmapMode(false);
     m_u8g2->drawXBM(x,y,w,h,bitmap);
+    if (commit) {
+        m_u8g2->sendBuffer();
+    }
+}
+
+void ScreenHandler::drawRect(const int& x_pos, const int& y_pos, const int& width, const int& height, bool commit) {
+    m_u8g2->drawFrame(x_pos, y_pos, width, height);
     if (commit) {
         m_u8g2->sendBuffer();
     }

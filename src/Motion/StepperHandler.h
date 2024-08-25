@@ -13,11 +13,13 @@
 
 #include <AccelStepper.h>
 
+#include <Config/LEGConfig.h>
+
 class StepperHandler {
     public:
         StepperHandler();
 
-        inline void updateSpeed(float newSpeed) { m_stepper.setSpeed(newSpeed * X_STEPS_PER_MM); }
+        inline void updateSpeed(float newSpeed) { m_stepper.setSpeed(newSpeed * LEGConfig::getInstance()->getStepperSteps()); }
 
         inline void run() { m_stepper.runSpeed(); }
         

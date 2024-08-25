@@ -1,13 +1,6 @@
 /**
  * Lathe Electronic Gearbox @ Ivan Castillo Caro @ 2022
- * 
- * This program is inspired in Marlin in order to have a small HAL.
- * 
- * All the symbology follows Marlin's convention. Otherwise, it will be indicated here.
- * 
- * Custom pins:
- * 
- * This is useful to port the project between different boards
+
  */
 #pragma once
 

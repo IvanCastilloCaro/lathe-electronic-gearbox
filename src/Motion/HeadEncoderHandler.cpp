@@ -1,6 +1,8 @@
 #include <Motion/HeadEncoderHandler.h>
 
-HeadEncoderHandler::HeadEncoderHandler() : k_invert_ticks_rev(1.0/ENCODER_TICKS_PER_REV), freq(0), direction(false), lastRefreshTime(millis())
+#include <Config/LEGConfig.h>
+
+HeadEncoderHandler::HeadEncoderHandler() : k_invert_ticks_rev(1.0/LEGConfig::getInstance()->getEncoderTicks()), freq(0), direction(false), lastRefreshTime(millis())
 {
     pinMode(HEAD_EN1, INPUT_PULLUP);
     pinMode(HEAD_EN2, INPUT_PULLUP);
@@ -10,14 +12,14 @@ HeadEncoderHandler::HeadEncoderHandler() : k_invert_ticks_rev(1.0/ENCODER_TICKS_
 
 void HeadEncoderHandler::update()
 {
-    if (millis() - lastRefreshTime < ENCODER_SAMPLING_RATE)
+    if (millis() - lastRefreshTime < LEGConfig::getInstance()->getEncoderPolling())
         return;
 
     displayFreq = ((double)freq * k_invert_ticks_rev) * (1000.0 / (millis() - lastRefreshTime));
     freq = 0;
     lastRefreshTime = millis();
 
-    direction = directionCounter >= 0 ? !ENCODER_INVERT_DIR : ENCODER_INVERT_DIR;
+    direction = directionCounter >= 0 ? !LEGConfig::getInstance()->getEncoderDir() : LEGConfig::getInstance()->getEncoderDir();
     directionCounter = 0;
 }
 

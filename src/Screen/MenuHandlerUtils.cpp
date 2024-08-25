@@ -32,3 +32,17 @@ String getLineChecked(const String& str, const bool& checked) {
 
     return str + "  [ ]";
 }
+
+String getIntConfigLine(const String& str, uint32_t value, bool editing) {
+    if (editing) {
+        return str + "[" + value + "]";
+    }
+    return str + " " + value;
+}
+
+String getFloatConfigLine(const String& str, float value, bool editing) {
+    if (editing) {
+        return str + "[" + String(value, 1) + "]";
+    }
+    return str + " " + String(value, 1);
+}

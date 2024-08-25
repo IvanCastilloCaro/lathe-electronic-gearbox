@@ -10,7 +10,7 @@
 #include <Arduino.h>
 #include <ThreadRelation/ThreadRelation.h>
 
-#define VERSION "V0.1.0-alpha"
+#define VERSION "V1.0.0-prerelease"
 
 ///////////////
 //   Board   //
@@ -20,9 +20,6 @@
 ///////////////////////////
 // Stepper Configuration //
 ///////////////////////////
-
-// By the moment, stepper configuration can't be ajusted "on the fly". So then you have
-// to recompile every time you have to change your steps/mm
 
 #ifndef X_STEPS_PER_MM
     #define X_STEPS_PER_MM 1600  // Has to be adjusted depending on your mechanical configuration.
@@ -34,7 +31,7 @@
 // LCD Configuration //
 ///////////////////////
 
-#define LCD_ENCODER_INVERT_DIR false // If the encoder turns in the reverse direction, change this.
+#define LCD_ENCODER_INVERT_DIR true // If the encoder turns in the reverse direction, change this.
 
 ///////////////////////////
 // Encoder Configuration //

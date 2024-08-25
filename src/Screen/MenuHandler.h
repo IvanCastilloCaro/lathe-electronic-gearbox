@@ -12,7 +12,8 @@
 #include <Screen/ScreenHandler.h>
 #include <Motion/MotionService.h>
 
-#include <config.h>
+#include <Config/LEGConfig.h>
+
 
 // Definition of enums to know in where we are currently
 
@@ -39,7 +40,8 @@ public:
     void enterPredefinedThreadMenu();
     void enterCustomRelationMenu();
     void enterSettingsMenu();
-    void enterAboutMenu(); 
+    void enterAboutMenu();
+    void drawEEPROMWindow(bool result);
 
     void handleOkButton();
     void handleInfoScreenButton();
@@ -57,6 +59,7 @@ public:
 
 private:
     void drawPredefinedThreadMenu(uint8_t page);
+    void drawSettingsMenu(uint8_t page);
     void drawCustomRelationValue();
     void refreshSettingValues();
 
@@ -64,6 +67,7 @@ private:
     uint8_t maximumMenuEntries;
     uint8_t currentPage;
     uint8_t maximumPages;
+    bool editing;
     MenuPosition m_menuPosition;
 
     ScreenEncoderHandler* enc;

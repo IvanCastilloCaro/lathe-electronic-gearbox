@@ -19,3 +19,7 @@ uint8_t calculateSecondStringOffset(const String& str1, const String& str2, Scre
 String formatRPMString(const uint16_t& rpm);
 
 String getLineChecked(const String& str, const bool& value);
+
+String getIntConfigLine(const String& str, uint32_t value, bool editing=false);
+
+String getFloatConfigLine(const String& str, float value, bool editing=false);
