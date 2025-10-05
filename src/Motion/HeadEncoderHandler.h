@@ -20,13 +20,9 @@ class HeadEncoderHandler {
 
         inline bool getDir() const { return direction; };
     private:
-        volatile uint16_t freq;
-        double displayFreq;
-        volatile int16_t directionCounter;
-        bool direction;
+        volatile double displayFreq;
+        volatile bool direction;
         long lastRefreshTime;
 
-
         const double k_invert_ticks_rev;
-        static void IRAM_ATTR freqCounter(void *p);
 };

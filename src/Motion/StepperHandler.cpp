@@ -2,9 +2,9 @@
 
 StepperHandler::StepperHandler() {
     m_stepper = AccelStepper(AccelStepper::DRIVER, X_STEP_PIN, X_DIR_PIN);
-    m_stepper.setPinsInverted(true,true);
+    m_stepper.setPinsInverted(LEGConfig::getInstance()->getStepperDir(),true);
 
-    m_stepper.setAcceleration(3000 * LEGConfig::getInstance()->getStepperSteps());
+    m_stepper.setAcceleration(1000 * LEGConfig::getInstance()->getStepperSteps());
     // Set max speed in mm/s
     m_stepper.setMaxSpeed(LEGConfig::getInstance()->getStepperMaxSpeed() * LEGConfig::getInstance()->getStepperSteps());
 

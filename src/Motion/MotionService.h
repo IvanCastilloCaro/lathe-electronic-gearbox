@@ -68,13 +68,13 @@ public:
 private:
     MotionService();
 
-    RunningMode m_running_mode;
-    EngageStatus m_engage_status;
-    EngageStatus m_setting_engage_status;
-    FeedDirectionMode m_head_direction_status;
-    FeedDirectionMode m_feed_direction_mode;
+    volatile RunningMode m_running_mode;
+    volatile EngageStatus m_engage_status;
+    volatile EngageStatus m_setting_engage_status;
+    volatile FeedDirectionMode m_head_direction_status;
+    volatile FeedDirectionMode m_feed_direction_mode;
     ThreadRelation m_actual_thread_relation;
-    uint16_t m_actual_rpm;
+    volatile uint16_t m_actual_rpm;
 
     static MotionService* m_motion_service;
 
